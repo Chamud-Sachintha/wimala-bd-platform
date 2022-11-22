@@ -69,4 +69,15 @@ public class RegistrationController {
         }
         return lineDTO;
     }
+
+    @PostMapping({"/addNewTransportEmployee"})
+    public TransportEmployeeDTO addNewTransportEmployee(@RequestBody TransportEmployeeDTO transportEmployeeDetails) {
+        TransportEmployeeDTO transportEmployeeDTO = null;
+        try {
+            transportEmployeeDTO = this.registrationService.addNewTransportEmployeeDetails(transportEmployeeDetails);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return transportEmployeeDTO;
+    }
 }

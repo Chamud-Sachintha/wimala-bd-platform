@@ -25,6 +25,9 @@ public class RegistrationService {
     @Autowired
     private LineDao lineDao;
 
+    @Autowired
+    private TransportEmployeeDao transportEmployeeDao;
+
     public MainBranches addNewMainBranchDetail(MainBranches mainBranchDetails) throws Exception {
         if (validateMainBranchExist(mainBranchDetails) == true) {
             try {
@@ -87,6 +90,33 @@ public class RegistrationService {
         } else {
             System.out.println("There is Duplicate Agent Exist.");
             return null;
+        }
+    }
+
+    public TransportEmployeeDTO addNewTransportEmployeeDetails(TransportEmployeeDTO newTransportEmployeeDetails) throws Exception {
+        if (validateTransportEmployeeExist(newTransportEmployeeDetails) == true) {
+            try {
+                return this.transportEmployeeDao.save(newTransportEmployeeDetails);
+            } catch (Exception e) {
+                throw new Exception(e.getMessage());
+            }
+        } else {
+            System.out.println("There is Duplicate Agent Exist.");
+            return null;
+        }
+    }
+
+    private boolean validateTransportEmployeeExist(TransportEmployeeDTO transportEmployeeDTO) {
+        if (transportEmployeeDTO.getTransportEmpNicNo() != null) {
+            Optional<TransportEmployeeDTO> getTransportEmployeeDetails = this.transportEmployeeDao.findById(transportEmployeeDTO.getTransportEmpNicNo());
+
+            if (getTransportEmployeeDetails.isPresent() == false) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            throw new NullPointerException("Invalid Ref Number.");
         }
     }
 
