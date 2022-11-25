@@ -2,8 +2,10 @@ package com.example.wimalabdplatform.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "main_branches")
 public class MainBranches {
     @Id
     private String branchRefNo;

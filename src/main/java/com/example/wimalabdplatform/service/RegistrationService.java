@@ -2,7 +2,10 @@ package com.example.wimalabdplatform.service;
 
 import com.example.wimalabdplatform.dao.*;
 import com.example.wimalabdplatform.entity.*;
+import com.example.wimalabdplatform.exceptions.CustomControllerAdvice;
+import com.example.wimalabdplatform.exceptions.DuplicateValuesFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -36,8 +39,8 @@ public class RegistrationService {
                 throw new Exception(e.getMessage());
             }
         } else {
-            System.out.println("There is Duplicate Branch Exist.");
-            return null;
+            // System.out.println("There is Duplicate Branch Exist.");
+            throw new DuplicateValuesFoundException("Duplicate Branches Found.");
         }
     }
 
@@ -49,8 +52,7 @@ public class RegistrationService {
                 throw new Exception(e.getMessage());
             }
         } else {
-            System.out.println("There is Duplicate Agent Exist.");
-            return null;
+            throw new DuplicateValuesFoundException("Duplicate Agent Found.");
         }
     }
 
@@ -62,8 +64,7 @@ public class RegistrationService {
                 throw new Exception(e.getMessage());
             }
         } else {
-            System.out.println("There is Duplicate Agent Exist.");
-            return null;
+            throw new DuplicateValuesFoundException("Duplicate Labling Employee Found.");
         }
     }
 
@@ -75,8 +76,7 @@ public class RegistrationService {
                 throw new Exception(e.getMessage());
             }
         } else {
-            System.out.println("There is Duplicate Agent Exist.");
-            return null;
+            throw new DuplicateValuesFoundException("Duplicate Packaging Employee Found.");
         }
     }
 
@@ -88,8 +88,7 @@ public class RegistrationService {
                 throw new Exception(e.getMessage());
             }
         } else {
-            System.out.println("There is Duplicate Agent Exist.");
-            return null;
+            throw new DuplicateValuesFoundException("Duplicate Shop Found.");
         }
     }
 
@@ -101,8 +100,7 @@ public class RegistrationService {
                 throw new Exception(e.getMessage());
             }
         } else {
-            System.out.println("There is Duplicate Agent Exist.");
-            return null;
+            throw new DuplicateValuesFoundException("Duplicate Transport Details Found.");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.wimalabdplatform.configurations;
 
+import com.example.wimalabdplatform.exceptions.JWTTokenExpiredException;
 import com.example.wimalabdplatform.service.JwtService;
 import com.example.wimalabdplatform.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -41,10 +42,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             } catch (IllegalArgumentException e) {
                 System.out.println("Unable to get JWT Token");
             } catch (ExpiredJwtException e) {
-                System.out.println("JWT Token has expired");
+                throw new JWTTokenExpiredException("JWT Token is Expired.");
             }
         } else {
-            System.out.println("JWT token does not start with Bearer");
+            System.out.println("JWT Token Not Start With Bearer.");
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
