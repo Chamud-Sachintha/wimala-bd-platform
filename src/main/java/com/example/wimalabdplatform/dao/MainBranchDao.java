@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MainBranchDao extends JpaRepository<MainBranches, String> {
+    public String deleteByBranchRefNo(String refNo);
 }

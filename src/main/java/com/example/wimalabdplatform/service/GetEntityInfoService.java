@@ -24,6 +24,9 @@ public class GetEntityInfoService {
     private PackagingEmployeeDao packagingEmployeeDao;
 
     @Autowired
+    private LineDao lineDao;
+
+    @Autowired
     private TransportEmployeeDao transportEmployeeDao;
 
     public List<MainBranches> getAllMainBranches() {
@@ -44,6 +47,11 @@ public class GetEntityInfoService {
     public List<PackagingEmployeeDTO> getAllPackagingEmployees() {
         List<PackagingEmployeeDTO> packagingEmployeeDTOS = this.packagingEmployeeDao.findAll();
         return packagingEmployeeDTOS;
+    }
+
+    public List<LineDTO> getAllShopDetails() {
+        List<LineDTO> lineDTOS = this.lineDao.findAll();
+        return lineDTOS;
     }
 
     public List<TransportEmployeeDTO> getAllTransportEmployees() {

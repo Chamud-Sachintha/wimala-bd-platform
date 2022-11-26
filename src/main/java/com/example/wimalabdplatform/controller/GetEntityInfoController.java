@@ -69,6 +69,19 @@ public class GetEntityInfoController {
         return packagingEmployeeDTOS;
     }
 
+    @GetMapping({"/allShopDetails"})
+    public List<LineDTO> allShopDetailsList() {
+        List<LineDTO> lineDTOS = new ArrayList<>();
+
+        try {
+            lineDTOS = this.getEntityInfoService.getAllShopDetails();
+        } catch (Exception e) {
+            throw new RuntimeException("There is An Error Occured.");
+        }
+
+        return lineDTOS;
+    }
+
     @GetMapping({"/allTransportEmployees"})
     public List<TransportEmployeeDTO> allTransportEmployeesList() {
         List<TransportEmployeeDTO> transportEmployeeDTOS = new ArrayList<>();
