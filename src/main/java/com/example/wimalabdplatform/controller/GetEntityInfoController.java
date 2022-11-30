@@ -106,4 +106,64 @@ public class GetEntityInfoController {
 
         return mainBranchDetailById;
     }
+
+    @GetMapping({"/getAgentDetailsById"})
+    public Optional<AgentDTO> getAgentDetailsById(@RequestParam String agentRefNo) {
+        Optional<AgentDTO> agentDetailsById = null;
+        try {
+            agentDetailsById = this.getEntityInfoService.getAgentDetailById(agentRefNo);
+        } catch (Exception e) {
+            throw new RuntimeException("There is An Error Occured.");
+        }
+
+        return agentDetailsById;
+    }
+
+    @GetMapping({"/getLablingEmployeeDetailsById"})
+    public Optional<LablingEmployeeDTO> getLablingEmployeeDetailsById(@RequestParam String empRefNo) {
+        Optional<LablingEmployeeDTO> lablingEmployeeDetails = null;
+        try {
+            lablingEmployeeDetails = this.getEntityInfoService.getLablingEployeeDetailsById(empRefNo);
+        } catch (Exception e) {
+            throw new RuntimeException("There is An Error Occured.");
+        }
+
+        return lablingEmployeeDetails;
+    }
+
+    @GetMapping({"/getPackagingEmployeeDetailsById"})
+    public Optional<PackagingEmployeeDTO> getPackagingEmployeeDetailsById(@RequestParam String empRefNo) {
+        Optional<PackagingEmployeeDTO> packagingEmployeeDetails = null;
+        try {
+            packagingEmployeeDetails = this.getEntityInfoService.getPackagingEmployeedetailsById(empRefNo);
+        } catch (Exception e) {
+            throw new RuntimeException("There is An Error Occured.");
+        }
+
+        return packagingEmployeeDetails;
+    }
+
+    @GetMapping({"/getShopdetailsById"})
+    public Optional<LineDTO> getShopdetailsById(@RequestParam String shopOwnerNic) {
+        Optional<LineDTO> shopdetails = null;
+        try {
+            shopdetails = this.getEntityInfoService.getShopDetailsById(shopOwnerNic);
+        } catch (Exception e) {
+            throw new RuntimeException("There is An Error Occured.");
+        }
+
+        return shopdetails;
+    }
+
+    @GetMapping({"/getTransportEmployeeDetailsById"})
+    public Optional<TransportEmployeeDTO> getTransportEmployeeDetailsById(@RequestParam String empRefNo) {
+        Optional<TransportEmployeeDTO> transportEmployeeDetails = null;
+        try {
+            transportEmployeeDetails = this.getEntityInfoService.getTransportEmployeeDetailsById(empRefNo);
+        } catch (Exception e) {
+            throw new RuntimeException("There is An Error Occured.");
+        }
+
+        return transportEmployeeDetails;
+    }
 }

@@ -70,4 +70,64 @@ public class GetEntityInfoService {
 
         return mainBrancheDetail;
     }
+
+    public Optional<AgentDTO> getAgentDetailById(String agentRefNo) {
+        Optional<AgentDTO> agentDetails = null;
+
+        if (agentRefNo != null) {
+            agentDetails = this.agentDao.findById(agentRefNo);
+        } else {
+            throw new NullPointerException("Branch Ref No is Required.");
+        }
+
+        return agentDetails;
+    }
+
+    public Optional<LablingEmployeeDTO> getLablingEployeeDetailsById(String empRefNo) {
+        Optional<LablingEmployeeDTO> lablingEmployeeDetails = null;
+
+        if (empRefNo != null) {
+            lablingEmployeeDetails = this.lablingEmployeeDao.findById(empRefNo);
+        } else {
+            throw new NullPointerException("Branch Ref No is Required.");
+        }
+
+        return lablingEmployeeDetails;
+    }
+
+    public Optional<PackagingEmployeeDTO> getPackagingEmployeedetailsById(String empRefNo) {
+        Optional<PackagingEmployeeDTO> packagingEmployeeDetails = null;
+
+        if (empRefNo != null) {
+            packagingEmployeeDetails = this.packagingEmployeeDao.findById(empRefNo);
+        } else {
+            throw new NullPointerException("Branch Ref No is Required.");
+        }
+
+        return packagingEmployeeDetails;
+    }
+
+    public Optional<LineDTO> getShopDetailsById(String shopOwnerNic) {
+        Optional<LineDTO> shopDetails = null;
+
+        if (shopOwnerNic != null) {
+            shopDetails = this.lineDao.findById(shopOwnerNic);
+        } else {
+            throw new NullPointerException("Branch Ref No is Required.");
+        }
+
+        return shopDetails;
+    }
+
+    public Optional<TransportEmployeeDTO> getTransportEmployeeDetailsById(String emprefNo) {
+        Optional<TransportEmployeeDTO> transportEmployeeDetails = null;
+
+        if (emprefNo != null) {
+            transportEmployeeDetails = this.transportEmployeeDao.findById(emprefNo);
+        } else {
+            throw new NullPointerException("Branch Ref No is Required.");
+        }
+
+        return transportEmployeeDetails;
+    }
 }
