@@ -8,6 +8,7 @@ import com.example.wimalabdplatform.service.StockItem.StockItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -51,8 +52,8 @@ public class StockItemController {
     }
 
     @GetMapping({"/getWrappingLeavesByStockId"})
-    public Optional<WrappingLeavesDTO> getWrappingLeavesByStockId(@RequestParam int stockId) {
-        Optional<WrappingLeavesDTO> wrappingLeavesDTO = null;
+    public List<WrappingLeavesDTO> getWrappingLeavesByStockId(@RequestParam int stockId) {
+        List<WrappingLeavesDTO> wrappingLeavesDTO = null;
 
         try {
             wrappingLeavesDTO = this.stockItemService.getWrappingLeavesBySockId(stockId);
@@ -64,8 +65,8 @@ public class StockItemController {
     }
 
     @GetMapping({"/getTobaccoLeavesDetailsByStockId"})
-    public Optional<TobaccoLeavesDTO> getTobaccoLeavesDetailsByStockId(@RequestParam int stockId) {
-        Optional<TobaccoLeavesDTO> tobaccoLeavesDTO = null;
+    public List<TobaccoLeavesDTO> getTobaccoLeavesDetailsByStockId(@RequestParam int stockId) {
+        List<TobaccoLeavesDTO> tobaccoLeavesDTO = null;
 
         try {
             tobaccoLeavesDTO = this.stockItemService.getTobaccoLeavesByStockId(stockId);
@@ -77,8 +78,8 @@ public class StockItemController {
     }
 
     @GetMapping({"/getNilonDetailsByStockId"})
-    public Optional<NilonDetailsDTO> getNilonDetailsByStockId(@RequestParam int stockId) {
-        Optional<NilonDetailsDTO> nilonDetailsDTO = null;
+    public List<NilonDetailsDTO> getNilonDetailsByStockId(@RequestParam int stockId) {
+        List<NilonDetailsDTO> nilonDetailsDTO = null;
 
         try {
             nilonDetailsDTO = this.stockItemService.getNilonDetailsByStockId(stockId);
@@ -90,8 +91,8 @@ public class StockItemController {
     }
 
     @GetMapping({"/getChemicalDetailsByStockId"})
-    public Optional<ChemicalDetailsDTO> getChemicalDetailsByStockId(@RequestParam int stockId) {
-        Optional<ChemicalDetailsDTO> chemicalDetailsDTO = null;
+    public List<ChemicalDetailsDTO> getChemicalDetailsByStockId(@RequestParam int stockId) {
+        List<ChemicalDetailsDTO> chemicalDetailsDTO = null;
 
         try {
             chemicalDetailsDTO = this.stockItemService.getChemicalDetailsByStockId(stockId);
@@ -124,5 +125,29 @@ public class StockItemController {
     public int getChemicalDetailsCountByStockId(@RequestParam int stockId) {
         int chemicalDetailsCount = this.stockItemService.getChemicalDetailsCountByStockId(stockId);
         return chemicalDetailsCount;
+    }
+
+    @GetMapping({"/getWrappingLeavesByRefNoAndStockId"})
+    public WrappingLeavesDTO getWrappingLeavesByRefNoAndStockId(@RequestParam int refNo, @RequestParam int stockId) {
+        WrappingLeavesDTO wrappingLeavesDTO = this.stockItemService.getWrappingLeavesByRefNoAndStockId(refNo, stockId);
+        return wrappingLeavesDTO;
+    }
+
+    @GetMapping({"/getTobaccoLeavesByRefNoAndStockId"})
+    public TobaccoLeavesDTO getTobaccoLeavesByRefNoAndStockId(@RequestParam int refNo, @RequestParam int stockId) {
+        TobaccoLeavesDTO tobaccoLeavesDTO = this.stockItemService.getTobaccoLeavesByRefNoAndStockId(refNo, stockId);
+        return tobaccoLeavesDTO;
+    }
+
+    @GetMapping({"/getNilonDetailsByRefNoAndStockId"})
+    public NilonDetailsDTO getNilonDetailsByRefNoAndStockId(@RequestParam int refNo, @RequestParam int stockId) {
+        NilonDetailsDTO nilonDetailsDTO = this.stockItemService.getNilonDetailsByRefNoAndStockId(refNo, stockId);
+        return nilonDetailsDTO;
+    }
+
+    @GetMapping({"/getChemicalDetailsByrefNoAndStockId"})
+    public ChemicalDetailsDTO getChemicalDetailsByrefNoAndStockId(@RequestParam int refNo, @RequestParam int stockId) {
+        ChemicalDetailsDTO chemicalDetailsDTO = this.stockItemService.getChemicalDetailsByrefNoAndStockId(refNo, stockId);
+        return chemicalDetailsDTO;
     }
 }

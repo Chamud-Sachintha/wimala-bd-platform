@@ -32,7 +32,7 @@ public class ManageEntityController {
     }
 
     @PutMapping({"/updatePackagingEmployee"})
-    public PackagingEmployeeDTO updatePackagingEmployeeByEmployeeRefNo(@RequestParam String refNo, PackagingEmployeeDTO newPackagingEmployeeDetails) {
+    public PackagingEmployeeDTO updatePackagingEmployeeByEmployeeRefNo(@RequestParam String refNo,@RequestBody PackagingEmployeeDTO newPackagingEmployeeDetails) {
         PackagingEmployeeDTO packagingEmployeeDetails = manageEntityService.updatePackagingEmployeeByEmployeerefNo(refNo, newPackagingEmployeeDetails);
         return packagingEmployeeDetails;
     }

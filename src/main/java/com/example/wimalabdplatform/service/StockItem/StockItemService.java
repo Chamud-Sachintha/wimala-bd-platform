@@ -13,6 +13,7 @@ import com.example.wimalabdplatform.entity.StockItems.WrappingLeavesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,12 +34,60 @@ public class StockItemService {
     @Autowired
     private StockDao stockDao;
 
-    public Optional<WrappingLeavesDTO> getWrappingLeavesBySockId(int stockId) {
-        Optional<WrappingLeavesDTO> wrappingLeavesDTOS = null;
+    public WrappingLeavesDTO getWrappingLeavesByRefNoAndStockId(int refNo, int stockId) {
+        WrappingLeavesDTO wrappingLeavesDTO = null;
+
+        try {
+            wrappingLeavesDTO = this.wrapingLeavesDao.findWrappingLeavesByRefNoAndStockId(refNo, stockId);
+        } catch (Exception e) {
+            throw new RuntimeException("There is an Error Occured " + e.getMessage());
+        }
+
+        return wrappingLeavesDTO;
+    }
+
+    public TobaccoLeavesDTO getTobaccoLeavesByRefNoAndStockId(int refNo, int stockId) {
+        TobaccoLeavesDTO tobaccoLeavesDTO = null;
+
+        try {
+            tobaccoLeavesDTO = this.tobaccoLeavesDao.findTobaccoLeavesByRefNoAndStockId(refNo, stockId);
+        } catch (Exception e) {
+            throw new RuntimeException("There is an Error Occur " + e.getMessage());
+        }
+
+        return tobaccoLeavesDTO;
+    }
+
+    public NilonDetailsDTO getNilonDetailsByRefNoAndStockId(int refNo, int stockId) {
+        NilonDetailsDTO nilonDetailsDTO = null;
+
+        try {
+            nilonDetailsDTO = this.nilonDetailsDao.findNilondetailsByRefNoAndStockId(refNo, stockId);
+        } catch (Exception e) {
+            throw new RuntimeException("There is an Error Occured " + e.getMessage());
+        }
+
+        return nilonDetailsDTO;
+    }
+
+    public ChemicalDetailsDTO getChemicalDetailsByrefNoAndStockId(int refNo, int stockId) {
+        ChemicalDetailsDTO chemicalDetailsDTO = null;
+
+        try {
+            chemicalDetailsDTO = this.chemicalDetailsDao.findChemicalDetailsByRefNoAndStockId(refNo, stockId);
+        } catch (Exception e) {
+            throw new RuntimeException("There is an Error Occured " + e.getMessage());
+        }
+
+        return chemicalDetailsDTO;
+    }
+
+    public List<WrappingLeavesDTO> getWrappingLeavesBySockId(int stockId) {
+        List<WrappingLeavesDTO> wrappingLeavesDTOS = null;
         validateStockId(stockId);
 
         try {
-            wrappingLeavesDTOS = this.wrapingLeavesDao.findById(stockId);
+            wrappingLeavesDTOS = this.wrapingLeavesDao.findAllWrappingLeavesByStockId(stockId);
         } catch (Exception e) {
             throw new RuntimeException("There is an Error " + e.getMessage());
         }
@@ -46,12 +95,12 @@ public class StockItemService {
         return wrappingLeavesDTOS;
     }
 
-    public Optional<TobaccoLeavesDTO> getTobaccoLeavesByStockId(int stockId) {
-        Optional<TobaccoLeavesDTO> tobaccoLeavesDTO = null;
+    public List<TobaccoLeavesDTO> getTobaccoLeavesByStockId(int stockId) {
+        List<TobaccoLeavesDTO> tobaccoLeavesDTO = null;
         validateStockId(stockId);
 
         try {
-            tobaccoLeavesDTO = this.tobaccoLeavesDao.findById(stockId);
+            tobaccoLeavesDTO = this.tobaccoLeavesDao.frindTobaccoLeavesByStockId(stockId);
         } catch (Exception e) {
             throw new RuntimeException("There is an Error " + e.getMessage());
         }
@@ -59,12 +108,12 @@ public class StockItemService {
         return tobaccoLeavesDTO;
     }
 
-    public Optional<NilonDetailsDTO> getNilonDetailsByStockId(int stockId) {
-        Optional<NilonDetailsDTO> nilonDetailsDTO = null;
+    public List<NilonDetailsDTO> getNilonDetailsByStockId(int stockId) {
+        List<NilonDetailsDTO> nilonDetailsDTO = null;
         validateStockId(stockId);
 
         try {
-            nilonDetailsDTO = this.nilonDetailsDao.findById(stockId);
+            nilonDetailsDTO = this.nilonDetailsDao.findNilonDetailsByStockId(stockId);
         } catch (Exception e) {
             throw new RuntimeException("There is an Error " + e.getMessage());
         }
@@ -72,12 +121,12 @@ public class StockItemService {
         return nilonDetailsDTO;
     }
 
-    public Optional<ChemicalDetailsDTO> getChemicalDetailsByStockId(int stockId) {
-        Optional<ChemicalDetailsDTO> chemicalDetailsDTO = null;
+    public List<ChemicalDetailsDTO> getChemicalDetailsByStockId(int stockId) {
+        List<ChemicalDetailsDTO> chemicalDetailsDTO = null;
         validateStockId(stockId);
 
         try {
-            chemicalDetailsDTO = this.chemicalDetailsDao.findById(stockId);
+            chemicalDetailsDTO = this.chemicalDetailsDao.findChemicalDetailsByStockId(stockId);
         } catch (Exception e) {
             throw new RuntimeException("There is an Error " + e.getMessage());
         }
